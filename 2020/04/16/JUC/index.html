@@ -2,111 +2,367 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-
-  
   <title>JUC | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一章 JUC1、JUC是什么java.util.concurrent在并发编程中使用的工具类,主要由以下3个包组成     2、进程&#x2F;线程？  并发&#x2F;并行？(1)、进程&#x2F;线程是什么？进程：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。 线程：通常在一个进程中可以包含若干个线程，当然一">
+  <meta name="keywords" content=" JavaSe ">
+  <meta name="description" content="JUC | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. 你好，新世">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JUC">
-<meta property="og:url" content="http://yoursite.com/2020/04/16/JUC/index.html">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="http://yoursite.com/2020/04/16/hello-world/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第一章 JUC1、JUC是什么java.util.concurrent在并发编程中使用的工具类,主要由以下3个包组成     2、进程&#x2F;线程？  并发&#x2F;并行？(1)、进程&#x2F;线程是什么？进程：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。 线程：通常在一个进程中可以包含若干个线程，当然一">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. 你好，新世">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/images/QQ%E6%88%AA%E5%9B%BE20200220203545.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200403180852.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200403181044.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200403181757.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200403194758.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200403194905.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200221220621.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200221220912.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/%E6%89%B9%E6%B3%A8%202020-02-22%20134107.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/%E6%89%B9%E6%B3%A8%202020-02-22%20134700.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/%E6%89%B9%E6%B3%A8%202020-02-22%20134813.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200222162827.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200222170202.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200222175107.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/QQ%E6%88%AA%E5%9B%BE20200222181114.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/16/JUC/images/%E5%9B%BE%E5%83%8F.bmp">
-<meta property="article:published_time" content="2020-04-16T08:12:41.774Z">
-<meta property="article:modified_time" content="2020-04-16T08:18:08.153Z">
+<meta property="article:published_time" content="2020-04-16T04:01:55.065Z">
+<meta property="article:modified_time" content="2020-04-16T09:38:58.424Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/QQ%E6%88%AA%E5%9B%BE20200220203545.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 <meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-JUC" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/16/JUC/" class="article-date">
-  <time datetime="2020-04-16T08:12:41.774Z" itemprop="datePublished">2020-04-16</time>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      JUC
-    </h1>
-  
+<div class="author">
+    <span>John Doe</span>
+</div>
 
-      </header>
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(2)</small></div></li>
+    
+        
+            
+            <li><div data-rel="Java基础">Java基础<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="2">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color2">JavaSe</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2020/04/16/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-04-16 12:01:55">2020/04/16</span>
+        </a>
+        
+        <a  class="Java基础 "
+           href="/2020/04/16/JUC/"
+           data-tag="JavaSe"
+           data-author="" >
+            <span class="post-title" title="JUC">JUC</span>
+            <span class="post-date" title="2020-04-16 00:00:00">2020/04/16</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-JUC" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">JUC</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="Java基础">Java基础</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color2">JavaSe</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-16 17:13:33'>2020-04-16 00:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-JUC"><span class="toc-text">第一章 JUC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、JUC是什么"><span class="toc-text">1、JUC是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、进程-线程？-并发-并行？"><span class="toc-text">2、进程&#x2F;线程？  并发&#x2F;并行？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、进程-线程是什么？"><span class="toc-text">(1)、进程&#x2F;线程是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、进程-线程例子？"><span class="toc-text">(2)、进程&#x2F;线程例子？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、什么是并发？什么是并行？"><span class="toc-text">(3)、什么是并发？什么是并行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-、线程状态"><span class="toc-text">(4)、线程状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-、wait-sleep的区别？"><span class="toc-text">(5)、wait&#x2F;sleep的区别？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-Lock接口"><span class="toc-text">第二章 Lock接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、创建线程的方式"><span class="toc-text">1、创建线程的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、类直接继承Thread"><span class="toc-text">(1)、类直接继承Thread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、new-Thread"><span class="toc-text">(2)、new Thread();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、第三种"><span class="toc-text">(3)、第三种</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、复习Synchronized（卖票练习1）"><span class="toc-text">2、复习Synchronized（卖票练习1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Lock接口"><span class="toc-text">3、Lock接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、Lock是什么"><span class="toc-text">(1)、Lock是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、ReentrantLock可重复锁"><span class="toc-text">(2)、ReentrantLock可重复锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、synchronized与Lock的区别"><span class="toc-text">(3)、synchronized与Lock的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#公平锁与非公平锁"><span class="toc-text">公平锁与非公平锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可重入锁"><span class="toc-text">可重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#死锁"><span class="toc-text">死锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Lock卖票改进（卖票练习2）"><span class="toc-text">4、Lock卖票改进（卖票练习2）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章-Java8之lambda表达式复习"><span class="toc-text">第三章 Java8之lambda表达式复习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、什么是Lambda"><span class="toc-text">1、什么是Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Lambda表达式接口实现语法"><span class="toc-text">2、Lambda表达式接口实现语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Lambda卖票改进（卖票练习2）"><span class="toc-text">3、Lambda卖票改进（卖票练习2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、详解Lambda表达式接口实现"><span class="toc-text">4、详解Lambda表达式接口实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四章-线程间通信"><span class="toc-text">第四章 线程间通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、生产者消费者问题"><span class="toc-text">1、生产者消费者问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、java8新版实现生产者消费者问题"><span class="toc-text">2、java8新版实现生产者消费者问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、线程间精准通知顺序访问"><span class="toc-text">3、线程间精准通知顺序访问</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五章-8锁问题"><span class="toc-text">第五章 8锁问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、锁的8个问题"><span class="toc-text">1、锁的8个问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、8锁分析"><span class="toc-text">2、8锁分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第六章-多线程集合类"><span class="toc-text">第六章 多线程集合类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、ArrayList不安全"><span class="toc-text">1、ArrayList不安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、解决办法"><span class="toc-text">2、解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、Vector"><span class="toc-text">(1)、Vector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、Collections"><span class="toc-text">(2)、Collections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、写时复制"><span class="toc-text">(3)、写时复制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、多说一点集合类"><span class="toc-text">3、多说一点集合类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第七章-Callable接口"><span class="toc-text">第七章 Callable接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Callable接口介绍"><span class="toc-text">1、Callable接口介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、与runnable接口对比"><span class="toc-text">2、与runnable接口对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、怎么用？"><span class="toc-text">3、怎么用？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、FutureTask"><span class="toc-text">4、FutureTask</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、是什么"><span class="toc-text">(1)、是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、原理"><span class="toc-text">(2)、原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、代码"><span class="toc-text">(3)、代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第八章-JUC强大的辅助类讲解"><span class="toc-text">第八章 JUC强大的辅助类讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、CountDownLatch-减少计数"><span class="toc-text">1、CountDownLatch 减少计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、CyclicBarrier-循环栅栏"><span class="toc-text">2、CyclicBarrier 循环栅栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Semaphore-信号灯（PV原语操作）"><span class="toc-text">3、Semaphore 信号灯（PV原语操作）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、ReentrantReadWriteLock读写锁"><span class="toc-text">4、ReentrantReadWriteLock读写锁</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第九章-阻塞队列"><span class="toc-text">第九章 阻塞队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、阻塞队列是什么"><span class="toc-text">1、阻塞队列是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、阻塞队列的用处"><span class="toc-text">2、阻塞队列的用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、架构梳理-种类分析"><span class="toc-text">3、架构梳理 种类分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、BlockingQueue核心方法API"><span class="toc-text">4、BlockingQueue核心方法API</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十章-ThreadPool线程池"><span class="toc-text">第十章 ThreadPool线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、为什么用线程池"><span class="toc-text">1、为什么用线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、线程池如何使用"><span class="toc-text">2、线程池如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、架构说明"><span class="toc-text">(1)、架构说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、线程池三大实现"><span class="toc-text">(2)、线程池三大实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、ThreadPoolExecutor底层原理"><span class="toc-text">3、ThreadPoolExecutor底层原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、三大实现都是ThreadPoolExecutor"><span class="toc-text">(1)、三大实现都是ThreadPoolExecutor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、ThreadPoolExecutor-七大参数"><span class="toc-text">(2)、ThreadPoolExecutor 七大参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、线程池底层工作原理"><span class="toc-text">(3)、线程池底层工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-、线程池的拒绝策略"><span class="toc-text">(4)、线程池的拒绝策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、手写线程池"><span class="toc-text">4、手写线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-、超级大坑"><span class="toc-text">(1)、超级大坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-、手写线程池"><span class="toc-text">(2)、手写线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#合理配置线程池的最大数量"><span class="toc-text">合理配置线程池的最大数量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-、拒绝策略"><span class="toc-text">(3)、拒绝策略</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="第一章-JUC"><a href="#第一章-JUC" class="headerlink" title="第一章 JUC"></a>第一章 JUC</h1><h2 id="1、JUC是什么"><a href="#1、JUC是什么" class="headerlink" title="1、JUC是什么"></a>1、JUC是什么</h2><p>java.util.concurrent在并发编程中使用的工具类,主要由以下3个包组成</p>
-<img src="/images/QQ截图20200220203545.png" style="zoom:150%;">
+<img src="/2020/04/16/JUC/QQ截图20200220203545.png" style="zoom:150%;">
 
 
 
@@ -185,20 +441,20 @@
 <h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>Demo</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HoldThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String lockA;</span><br><span class="line">    <span class="keyword">private</span> String lockB;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HoldThread</span><span class="params">(String lockA, String lockB)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.lockA = lockA;</span><br><span class="line">        <span class="keyword">this</span>.lockB = lockB;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (lockA)&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"获得"</span>+lockA);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">synchronized</span> (lockB)&#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">"获得"</span>+lockB);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeathLockDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String lockA = <span class="string">"lockA"</span>;</span><br><span class="line">        String lockB = <span class="string">"lockB"</span>;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> HoldThread(lockA, lockB), <span class="string">"threadAAA"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> HoldThread(lockB, lockA), <span class="string">"threadBBB"</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="images/QQ%E6%88%AA%E5%9B%BE20200403180852.png" alt></p>
+<p><img src="/2020/04/16/JUC/QQ%E6%88%AA%E5%9B%BE20200403180852.png" alt></p>
 <p><strong>排查流程</strong></p>
 <p>首先使用jsp -l命令查看是哪个进程惹事注意，（不加-l，不显示类的全路径，增加排查难度）</p>
-<img src="images/QQ截图20200403181044.png" style="zoom:80%;">
+<img src="/2020/04/16/JUC/QQ截图20200403181044.png" style="zoom:80%;">
 
-<img src="images/QQ截图20200403181757.png" style="zoom:80%;">
+<img src="/2020/04/16/JUC/QQ截图20200403181757.png" style="zoom:80%;">
 
 <p>主要是下面这一段代码，检测出了死锁</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Found one Java-level deadlock:</span><br><span class="line">=============================</span><br><span class="line">"threadBBB":</span><br><span class="line">  waiting to lock monitor 0x0000000003308fa8 (object 0x000000076b6a08e8, a java.lang.String),</span><br><span class="line">  which is held by "threadAAA"</span><br><span class="line">"threadAAA":</span><br><span class="line">  waiting to lock monitor 0x000000000330b8e8 (object 0x000000076b6a0920, a java.lang.String),</span><br><span class="line">  which is held by "threadBBB"</span><br><span class="line"></span><br><span class="line">Java stack information for the threads listed above:</span><br><span class="line">===================================================</span><br><span class="line">"threadBBB":</span><br><span class="line">        at lzw.juc.lock.death.HoldThread.run(HoldThread.java:27)</span><br><span class="line">        - waiting to lock &lt;0x000000076b6a08e8&gt; (a java.lang.String)</span><br><span class="line">        - locked &lt;0x000000076b6a0920&gt; (a java.lang.String)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line">"threadAAA":</span><br><span class="line">        at lzw.juc.lock.death.HoldThread.run(HoldThread.java:27)</span><br><span class="line">        - waiting to lock &lt;0x000000076b6a0920&gt; (a java.lang.String)</span><br><span class="line">        - locked &lt;0x000000076b6a08e8&gt; (a java.lang.String)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">Found 1 deadlock.</span><br></pre></td></tr></table></figure>
 
 <p>也可以使用jconsole命令,会弹出这个可视化工具，一键自动检测</p>
-<img src="images/QQ截图20200403194758.png" style="zoom:80%;">
+<img src="/2020/04/16/JUC/QQ截图20200403194758.png" style="zoom:80%;">
 
-<img src="images/QQ截图20200403194905.png" style="zoom:80%;">
+<img src="/2020/04/16/JUC/QQ截图20200403194905.png" style="zoom:80%;">
 
 
 
@@ -349,7 +605,7 @@
 <h1 id="第七章-Callable接口"><a href="#第七章-Callable接口" class="headerlink" title="第七章 Callable接口"></a>第七章 Callable接口</h1><h2 id="1、Callable接口介绍"><a href="#1、Callable接口介绍" class="headerlink" title="1、Callable接口介绍"></a>1、Callable接口介绍</h2><p><strong>面试题：获得多线程的方法几种？</strong><br>（1）继承thread类（2）runnable接口<br>如果只回答这两个你连被问到JUC的机会都没有 </p>
 <p>第三种 Callable接口</p>
 <p>Callable接口是一个函数式接口，因此可以用作lambda表达式或方法引用的赋值对象。</p>
-<img src="images/QQ截图20200221220621.png" style="zoom:1200%;">
+<img src="/2020/04/16/JUC/QQ截图20200221220621.png" style="zoom:1200%;">
 
 <h2 id="2、与runnable接口对比"><a href="#2、与runnable接口对比" class="headerlink" title="2、与runnable接口对比"></a>2、与runnable接口对比</h2><p>创建新类MyThread实现runnable接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -362,7 +618,7 @@
 <li>是否抛异常</li>
 <li>落地方法不一样，一个是run，一个是call</li>
 </ol>
-<h2 id="3、怎么用？"><a href="#3、怎么用？" class="headerlink" title="3、怎么用？"></a>3、怎么用？</h2><img src="images/QQ截图20200221220912.png" style="zoom:100%;">
+<h2 id="3、怎么用？"><a href="#3、怎么用？" class="headerlink" title="3、怎么用？"></a>3、怎么用？</h2><img src="/2020/04/16/JUC/QQ截图20200221220912.png" style="zoom:100%;">
 
 <p>可以看到一个很尴尬的事情，在线程的8个构造方法里面没有涉及到callable接口参数的构造方法，最常用的第三个方法也是runnable接口参数的构造方法。</p>
 <p>Java官方早就知道了这个问题，所以神奇的设计模式他来了，适配器模式完美解决</p>
@@ -441,7 +697,7 @@
 
 
 <h1 id="第九章-阻塞队列"><a href="#第九章-阻塞队列" class="headerlink" title="第九章 阻塞队列"></a>第九章 阻塞队列</h1><h2 id="1、阻塞队列是什么"><a href="#1、阻塞队列是什么" class="headerlink" title="1、阻塞队列是什么"></a>1、阻塞队列是什么</h2><p>阻塞：必须要阻塞/不得不阻塞<br>阻塞队列是一个队列，在数据结构中起的作用如下图：</p>
-<img src="images/批注 2020-02-22 134107.png" style="zoom: 60%;">
+<img src="/2020/04/16/JUC/批注 2020-02-22 134107.png" style="zoom: 60%;">
 线程1往阻塞队列里添加元素，线程2从阻塞队列里移除元素
 
 <p>当队列是空的，从队列中获取元素的操作将会被阻塞<br>当队列是满的，从队列中添加元素的操作将会被阻塞</p>
@@ -452,9 +708,9 @@
 <p>在concurrent包发布以前，在多线程环境下，我们每个程序员都必须去自己控制这些细节，尤其还要兼顾效率和线程安全，而这会给我们的程序带来不小的复杂度。</p>
 <p>有的时候需要线程进行阻塞，比如海底捞 候客区 一直等里面的空位置</p>
 <h2 id="3、架构梳理-种类分析"><a href="#3、架构梳理-种类分析" class="headerlink" title="3、架构梳理 种类分析"></a>3、架构梳理 种类分析</h2><p>BlockingQueue是Queue下的一个接口，</p>
-<img src="images/批注 2020-02-22 134700.png" style="zoom:67%;">
+<img src="/2020/04/16/JUC/批注 2020-02-22 134700.png" style="zoom:67%;">
 
-<p>而具体的实现类有以下7个（红色的具体掌握）<br><img src="images/批注 2020-02-22 134813.png" style="zoom:120%;"></p>
+<p>而具体的实现类有以下7个（红色的具体掌握）<br><img src="/2020/04/16/JUC/批注 2020-02-22 134813.png" style="zoom:120%;"></p>
 <ul>
 <li><font color="red">ArrayBlockingQueue：由数组结构组成的有界阻塞队列。</font></li>
 <li><font color="red">LinkedBlockingQueue：由链表结构组成的有界（但大小默认值为integer.MAX_VALUE）阻塞队列。</font></li>
@@ -464,7 +720,7 @@
 <li>LinkedTransferQueue：由链表组成的无界阻塞队列。</li>
 <li>LinkedBlockingDeque：由链表组成的双向阻塞队列。(Deque是Double Queue的意思)</li>
 </ul>
-<h2 id="4、BlockingQueue核心方法API"><a href="#4、BlockingQueue核心方法API" class="headerlink" title="4、BlockingQueue核心方法API"></a>4、BlockingQueue核心方法API</h2><img src="images/QQ截图20200222162827.png" style="zoom:80%;">
+<h2 id="4、BlockingQueue核心方法API"><a href="#4、BlockingQueue核心方法API" class="headerlink" title="4、BlockingQueue核心方法API"></a>4、BlockingQueue核心方法API</h2><img src="/2020/04/16/JUC/QQ截图20200222162827.png" style="zoom:80%;">
 
 <p>*<em>抛出异常 *</em></p>
 <ul>
@@ -490,7 +746,7 @@
 <p>它的主要特点为：<font color="red">线程复用  控制最大并发数 管理线程。</font></p>
 <p>第一：降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的销耗。<br>第二：提高响应速度。当任务到达时，任务可以不需要等待线程创建就能立即执行。<br>第三：提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会销耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</p>
 <h2 id="2、线程池如何使用"><a href="#2、线程池如何使用" class="headerlink" title="2、线程池如何使用"></a>2、线程池如何使用</h2><h3 id="1-、架构说明"><a href="#1-、架构说明" class="headerlink" title="(1)、架构说明"></a>(1)、架构说明</h3><p>Java中的线程池是通过Executor框架实现的，该框架中用到了Executor，Executors，ExecutorService，ThreadPoolExecutor这几个类</p>
-<img src="images/QQ截图20200222170202.png" style="zoom:80%;">
+<img src="/2020/04/16/JUC/QQ截图20200222170202.png" style="zoom:80%;">
 
 
 
@@ -527,7 +783,7 @@
 </ol>
 <p>拒绝策略下面会详讲</p>
 <p>上面的三大实现都是指定1<del>5的内容，6</del>7采用默认即可</p>
-<h3 id="3-、线程池底层工作原理"><a href="#3-、线程池底层工作原理" class="headerlink" title="(3)、线程池底层工作原理"></a>(3)、线程池底层工作原理</h3><img src="images/QQ截图20200222175107.png" style="zoom: 200%;">
+<h3 id="3-、线程池底层工作原理"><a href="#3-、线程池底层工作原理" class="headerlink" title="(3)、线程池底层工作原理"></a>(3)、线程池底层工作原理</h3><img src="/2020/04/16/JUC/QQ截图20200222175107.png" style="zoom: 200%;">
 
 <ol>
 <li>在创建了线程池后，开始等待请求。</li>
@@ -548,7 +804,7 @@
 <h3 id="4-、线程池的拒绝策略"><a href="#4-、线程池的拒绝策略" class="headerlink" title="(4)、线程池的拒绝策略"></a>(4)、线程池的拒绝策略</h3><h2 id="4、手写线程池"><a href="#4、手写线程池" class="headerlink" title="4、手写线程池"></a>4、手写线程池</h2><h3 id="1-、超级大坑"><a href="#1-、超级大坑" class="headerlink" title="(1)、超级大坑"></a>(1)、超级大坑</h3><p>在工作中单一的/固定数的/可变的三种创建线程池的方法哪个用的多？超级大坑</p>
 <p><strong><font color="red">答案是一个都不用，我们工作中只能使用自定义的</font></strong>    Executors中JDK已经给你提供了，为什么不用？</p>
 <p>阿里巴巴Java开发手册中明确写出不允许使用 Executors 去创建</p>
-<p><img src="images/QQ%E6%88%AA%E5%9B%BE20200222181114.png" alt></p>
+<p><img src="/2020/04/16/JUC/QQ%E6%88%AA%E5%9B%BE20200222181114.png" alt></p>
 <h3 id="2-、手写线程池"><a href="#2-、手写线程池" class="headerlink" title="(2)、手写线程池"></a>(2)、手写线程池</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService threadPool = <span class="keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">    	<span class="number">2</span>,  <span class="comment">//corePoolSize：线程池中的常驻核心线程数</span></span><br><span class="line">        Runtime.getRuntime().availableProcessors(), <span class="comment">//maximumPoolSize 最大线程数</span></span><br><span class="line">        <span class="number">3</span>,  <span class="comment">//存活时间</span></span><br><span class="line">        TimeUnit.SECONDS, <span class="comment">//存活时间单位</span></span><br><span class="line">        <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(<span class="number">5</span>),  <span class="comment">//阻塞任务队列</span></span><br><span class="line">        Executors.defaultThreadFactory(),   <span class="comment">//默认线程工厂</span></span><br><span class="line">        <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());  <span class="comment">//拒绝策略</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//10个顾客请求</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">                threadPool.execute(() -&gt; &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() +<span class="string">"\t办理业务"</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            threadPool.shutdown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>其中最大线程数应当和本机线程数一致？</p>
@@ -566,7 +822,7 @@
 </ul>
 <ol>
 <li>IO密集型任务 可以使用稍大的线程池，一般为2*CPU核心数。 IO密集型任务CPU使用率并不高，因此可以让CPU在等待IO的时候去处理别的任务，充分利用CPU时间。混合型任务 可以将任务分成IO密集型和CPU密集型任务，然后分别用不同的线程池去处理。 只要分完之后两个任务的执行时间相差不大，那么就会比串行执行来的高效。 因为如果划分之后两个任务执行时间相差甚远，那么先执行完的任务就要等后执行完的任务，最终的时间仍然取决于后执行完的任务，而且还要加上任务拆分与合并的开销，得不偿失。</li>
-<li><img src="images/%E5%9B%BE%E5%83%8F.bmp" alt></li>
+<li><img src="/2020/04/16/JUC/%E5%9B%BE%E5%83%8F.bmp" alt></li>
 </ol>
 <p>8/(1-0.9)=80</p>
 <p>下面详解拒绝策略</p>
@@ -591,112 +847,304 @@
 <p>这4种拒绝策略均实现了RejectedExecutionHandle接口，可以直接使用</p>
 
       
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/16/JUC/" data-id="ck92hxozw000290uk0u8rgy0k" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2020/04/16/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>JUC</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-04-16, 00:00:00</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-16, 17:13:33</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/16/JUC/" title="JUC">http://yoursite.com/2020/04/16/JUC/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
     
 
-  
-    
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+
+
     </div>
-  </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/04/16/JUC/">JUC</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/16/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/16/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
     </div>
-  </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
-  </div>
-</footer>
+</div>
+<a class="" id="rocket" ></a>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</div>
+<div class="acParent"></div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
 
 
-
-
-  </div>
 </body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#JavaSe',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
