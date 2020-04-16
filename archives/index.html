@@ -207,11 +207,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(2)</small></div></li>
+    <li><div class="all active">全部文章<small>(3)</small></div></li>
     
         
             
-            <li><div data-rel="Java基础">Java基础<small>(1)</small></div>
+            <li><div data-rel="Java基础">Java基础<small>(2)</small></div>
                 
             </li>
             
@@ -227,7 +227,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="2">
+<input type="hidden" id="yelog_site_posts_number" value="3">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -269,6 +269,10 @@
         <a class="color4">JUC</a>
     </li>
     
+    <li class="article-tag-list-item">
+        <a class="color5">设计模式</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
@@ -288,6 +292,14 @@
            data-tag="JavaSe,JUC"
            data-author="" >
             <span class="post-title" title="JUC详解">JUC详解</span>
+            <span class="post-date" title="2020-04-16 00:00:00">2020/04/16</span>
+        </a>
+        
+        <a  class="Java基础 "
+           href="/2020/04/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="JavaSe,设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式">设计模式</span>
             <span class="post-date" title="2020-04-16 00:00:00">2020/04/16</span>
         </a>
         
@@ -396,7 +408,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#JavaSe','#JUC',],
+            'data': ['#JavaSe','#JUC','#设计模式',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
