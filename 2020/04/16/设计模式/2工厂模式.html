@@ -1,0 +1,470 @@
+<hr>
+<p>title: 设计模式<br>date: 2020-4-16<br>comments: true<br>toc: true<br>categories: “设计模式”<br>tags:<br>    - 设计模式</p>
+<hr>
+<h1 id="二、工厂模式"><a href="#二、工厂模式" class="headerlink" title="二、工厂模式"></a>二、工厂模式</h1><h2 id="1、简单工厂模式"><a href="#1、简单工厂模式" class="headerlink" title="1、简单工厂模式"></a>1、简单工厂模式</h2><h3 id="1-、看一个具体的需求"><a href="#1-、看一个具体的需求" class="headerlink" title="(1)、看一个具体的需求"></a>(1)、看一个具体的需求</h3><p>​    看一个披萨的项目：要便于披萨种类的扩展，要便于维护</p>
+<ol>
+<li><p>披萨的种类很多(比如 GreekPizz、CheesePizz 等)</p>
+</li>
+<li><p>披萨的制作有 prepare，bake, cut, box</p>
+</li>
+<li><p>完成披萨店订购功能。</p>
+</li>
+</ol>
+<h3 id="2-、使用传统的方式来完成"><a href="#2-、使用传统的方式来完成" class="headerlink" title="(2)、使用传统的方式来完成"></a>(2)、使用传统的方式来完成</h3><h4 id="1-、UML类图分析"><a href="#1-、UML类图分析" class="headerlink" title="1)、UML类图分析"></a>1)、UML类图分析</h4><p>这样设计耦合性很高，一个orderPizza类也依赖了具体的实现GreekPizza和CheessPizza，如果增加新的披萨种类，会有更多的依赖，<strong>违反了OCP原则</strong>。</p>
+<img src="设计模式\QQ截图20200116163455.png" style="zoom:80%;" />
+
+<h4 id="2-、关键代码"><a href="#2-、关键代码" class="headerlink" title="2)、关键代码"></a>2)、关键代码</h4><pre><code class="java"><span class="comment">// 构造器</span>
+<span class="function"><span class="keyword">public</span> <span class="title">OrderPizza</span><span class="params">()</span> </span>{
+   Pizza pizza = <span class="keyword">null</span>;
+   String orderType; <span class="comment">// 订购披萨的类型</span>
+   <span class="keyword">do</span> {
+      orderType = getType();
+       <span class="comment">//这里每次增加新的种类披萨都要修改代码</span>
+
+      <span class="keyword">if</span> (orderType.equals(<span class="string">"greek"</span>)) {
+         pizza = <span class="keyword">new</span> GreekPizza();
+         pizza.setName(<span class="string">" 希腊披萨 "</span>);
+      } <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"cheese"</span>)) {
+         pizza = <span class="keyword">new</span> CheesePizza();
+         pizza.setName(<span class="string">" 奶酪披萨 "</span>);
+      }  <span class="keyword">else</span> {
+         <span class="keyword">break</span>;
+      }
+      <span class="comment">//输出pizza 制作过程</span>
+      pizza.prepare();
+      pizza.bake();
+      pizza.cut();
+      pizza.box();
+   } <span class="keyword">while</span> (<span class="keyword">true</span>);
+}
+
+<span class="comment">// 写一个方法，可以获取客户希望订购的披萨种类</span>
+<span class="function"><span class="keyword">private</span> String <span class="title">getType</span><span class="params">()</span> </span>{
+   <span class="keyword">try</span> {
+      BufferedReader strin = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));
+      System.out.println(<span class="string">"input pizza 种类:"</span>);
+      String str = strin.readLine();
+      <span class="keyword">return</span> str;
+   } <span class="keyword">catch</span> (IOException e) {
+      e.printStackTrace();
+      <span class="keyword">return</span> <span class="string">""</span>;
+   }
+}</code></pre>
+<h4 id="3-、传统的方式的优缺点"><a href="#3-、传统的方式的优缺点" class="headerlink" title="3)、传统的方式的优缺点"></a>3)、传统的方式的优缺点</h4><ol>
+<li><p>优点是比较好理解，简单易操作。</p>
+</li>
+<li><p>缺点是违反了设计模式的 ocp  原则，即对扩展开放，对修改关闭。即当我们给类增加新功能的时候，尽量不修改代码，或者尽可能少修改代码.</p>
+</li>
+<li><p>比如我们这时 要新增加一个 Pizza  的种类(Pepper  披萨)，我们需要做如下修改.</p>
+<pre><code class="java"><span class="keyword">if</span> (orderType.equals(<span class="string">"greek"</span>)) {
+   pizza = <span class="keyword">new</span> GreekPizza();
+   pizza.setName(<span class="string">" 希腊披萨 "</span>);
+} <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"cheese"</span>)) {
+   pizza = <span class="keyword">new</span> CheesePizza();
+   pizza.setName(<span class="string">" 奶酪披萨 "</span>);
+} <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"pepper"</span>)) {
+   pizza = <span class="keyword">new</span> PepperPizza();
+   pizza.setName(<span class="string">"胡椒披萨"</span>);
+} <span class="keyword">else</span> {
+   <span class="keyword">break</span>;
+}</code></pre>
+<p>如果我们增加一个 Pizza 类，只要是订购 Pizza 的代码都需要修改.</p>
+</li>
+<li><p>改进的思路分析<br>分析：修改代码可以接受，但是如果我们在其它的地方也有创建 Pizza 的代码，就意味着，也需要修改，而创建 Pizza的代码，往往有多处。<br>思路： <strong>把创建 Pizza  对象封装到一个类中</strong> ， <strong>这样我们有新的 Pizza  种类时</strong>， 只需要修改该类就可，其它有创建到 Pizza<br>对象的代码就不需要修改了.-&gt;  简单工厂模式</p>
+</li>
+</ol>
+<h3 id="3-、简单工厂基本介绍"><a href="#3-、简单工厂基本介绍" class="headerlink" title="(3)、简单工厂基本介绍"></a>(3)、简单工厂基本介绍</h3><p>1) 简单工厂模式是属于 <strong>创建型模式</strong>，是工厂模式的一种。简单工厂模式是由一个工厂对象决定创建出哪一种产品<br>类的实例。简单工厂模式是 工厂模式家族中<strong>最简单实用的模式</strong><br>2) 简单工厂模式：定义了一个创建对象的类，由<strong>这个类来 封装实例化对象的行为(代码)</strong><br>3) 在软件开发中，当我们会用到大量的创建某种、某类或者某批对象时，就会使用到工厂模式.</p>
+<h3 id="4-、简单工厂实现"><a href="#4-、简单工厂实现" class="headerlink" title="(4)、简单工厂实现"></a>(4)、简单工厂实现</h3><h4 id="1-、UML类图分析-1"><a href="#1-、UML类图分析-1" class="headerlink" title="1)、UML类图分析"></a>1)、UML类图分析</h4><img src="设计模式/QQ截图20200116170558.png" style="zoom:80%;" />
+
+<p>####2)、关键代码（普通方法）</p>
+<pre><code class="java"><span class="comment">//定义一个简单工厂对象</span>
+SimpleFactory simpleFactory;
+Pizza pizza = <span class="keyword">null</span>;
+
+<span class="comment">//构造器</span>
+<span class="function"><span class="keyword">public</span> <span class="title">OrderPizza</span><span class="params">(SimpleFactory simpleFactory)</span> </span>{
+   setFactory(simpleFactory);
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFactory</span><span class="params">(SimpleFactory simpleFactory)</span> </span>{
+   String orderType = <span class="string">""</span>; <span class="comment">//用户输入的</span>
+   <span class="keyword">this</span>.simpleFactory = simpleFactory; <span class="comment">//设置简单工厂对象</span>
+   <span class="keyword">do</span> {
+      orderType = getType();
+      pizza = <span class="keyword">this</span>.simpleFactory.createPizza(orderType);
+      <span class="comment">//输出pizza</span>
+      <span class="keyword">if</span>(pizza != <span class="keyword">null</span>) { <span class="comment">//订购成功</span>
+         pizza.prepare();
+         pizza.bake();
+         pizza.cut();
+         pizza.box();
+      } <span class="keyword">else</span> {
+         System.out.println(<span class="string">" 订购披萨失败 "</span>);
+         <span class="keyword">break</span>;
+      }
+   }<span class="keyword">while</span>(<span class="keyword">true</span>);
+}</code></pre>
+<p>这样的代码还可以升级为下面一种静态方法，不用new SimpleFactory实例，直接就可以调用。</p>
+<p>工厂模式，<strong>工厂一般都有很多地方调用。一般要配合单例模式来进行使用。</strong></p>
+<h4 id="3-、关键代码（改成静态方法）"><a href="#3-、关键代码（改成静态方法）" class="headerlink" title="3)、关键代码（改成静态方法）"></a>3)、关键代码（改成静态方法）</h4><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="title">OrderPizza2</span><span class="params">()</span> </span>{
+   <span class="keyword">do</span> {
+      orderType = getType();
+      pizza = SimpleFactory.createPizza2(orderType);
+      <span class="comment">// 输出pizza</span>
+      <span class="keyword">if</span> (pizza != <span class="keyword">null</span>) { <span class="comment">// 订购成功</span>
+         pizza.prepare();
+         pizza.bake();
+         pizza.cut();
+         pizza.box();
+      } <span class="keyword">else</span> {
+         System.out.println(<span class="string">" 订购披萨失败 "</span>);
+         <span class="keyword">break</span>;
+      }
+   } <span class="keyword">while</span> (<span class="keyword">true</span>);
+}</code></pre>
+<p>​       每一个OrderPizza去使用SimpleFactory时，只需要用createPizza2(创建对象)方法即可，不需要关注里面的实现细节。</p>
+<pre><code class="java"><span class="comment">//SimpleFactory里面的createPizza2方法</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Pizza <span class="title">createPizza2</span><span class="params">(String orderType)</span> </span>{
+    Pizza pizza = <span class="keyword">null</span>;
+    System.out.println(<span class="string">"使用简单工厂模式2"</span>);
+    <span class="keyword">if</span> (orderType.equals(<span class="string">"greek"</span>)) {
+        pizza = <span class="keyword">new</span> GreekPizza();
+        pizza.setName(<span class="string">" 希腊披萨 "</span>);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"cheese"</span>)) {
+        pizza = <span class="keyword">new</span> CheesePizza();
+        pizza.setName(<span class="string">" 奶酪披萨 "</span>);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"pepper"</span>)) {
+        pizza = <span class="keyword">new</span> PepperPizza();
+        pizza.setName(<span class="string">"胡椒披萨"</span>);
+    }
+    <span class="keyword">return</span> pizza;
+}</code></pre>
+<h3 id="5-、简单工厂优缺点"><a href="#5-、简单工厂优缺点" class="headerlink" title="(5)、简单工厂优缺点"></a>(5)、简单工厂优缺点</h3><p><strong>优点：</strong></p>
+<ul>
+<li>将创建实例的工作与使用实例的工作分开，使用者不必关心类对象如何创建，实现了解耦；</li>
+<li>把初始化实例时的工作放到工厂里进行，使代码更容易维护。 更符合面向对象的原则 &amp; 面向接口编程，而不是面向实现编程。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>工厂类集中了所有实例（产品）的创建逻辑，一旦这个工厂不能正常工作，整个系统都会受到影响；</li>
+<li>违背“开放 - 关闭原则”，一旦添加新产品就不得不修改工厂类的逻辑，这样就会造成工厂逻辑过于复杂。</li>
+<li>简单工厂模式由于使用了静态工厂方法，<strong>静态方法不能被继承和重写</strong>，会造成工厂角色无法形成基于继承的等级结构。</li>
+</ul>
+<h3 id="6-、-应用场景"><a href="#6-、-应用场景" class="headerlink" title="(6)、 应用场景"></a>(6)、 应用场景</h3><p>在了解了优缺点后，我们知道了简单工厂模式的应用场景：</p>
+<ul>
+<li>客户如果只知道传入工厂类的参数，对于如何创建对象的逻辑不关心时；</li>
+<li>当工厂类负责创建的对象（具体产品）比较少时。</li>
+</ul>
+<h2 id="2、工厂方法模式"><a href="#2、工厂方法模式" class="headerlink" title="2、工厂方法模式"></a>2、工厂方法模式</h2><h3 id="1-、一个新的需求"><a href="#1-、一个新的需求" class="headerlink" title="(1)、一个新的需求"></a>(1)、一个新的需求</h3><p>披萨项目新的需求：客户在点披萨时，可以点 不同口味的披萨，比如 北京的奶酪 pizza、北京的胡椒 pizza 或<br>者是伦敦的奶酪 pizza、伦敦的胡椒 pizza。</p>
+<ul>
+<li>思路 1：使用 简单工厂模式，创建 不同的简单工厂类，比如 BJPizzaSimpleFactory、LDPizzaSimpleFactory 等等。从当前这个案例来说，也是可以的，但是考虑到项目的规模，以及软件的可维护性、可扩展性并不是特别好。不停的创建SimpleFactory类，会有类爆炸的问题。</li>
+<li>思路 2：使用工厂方法模式</li>
+</ul>
+<h3 id="2-、工厂方法模式介绍"><a href="#2-、工厂方法模式介绍" class="headerlink" title="(2)、工厂方法模式介绍"></a>(2)、工厂方法模式介绍</h3><ol>
+<li>工厂方法模式设计方案：将披萨项目的实例化功能抽象成抽象方法，在不同的口味点餐子类中具体实现。</li>
+<li>工厂方法模式： 定义了一个创建对象的抽象方法，由子类决定要实例化的类。工厂方法模式将对象的实例化推迟到子类</li>
+</ol>
+<h3 id="3-、工厂方法模式应用案例"><a href="#3-、工厂方法模式应用案例" class="headerlink" title="(3)、工厂方法模式应用案例"></a>(3)、工厂方法模式应用案例</h3><h4 id="1-披萨项目新的需求："><a href="#1-披萨项目新的需求：" class="headerlink" title="1) 披萨项目新的需求："></a>1) 披萨项目新的需求：</h4><p>客户在点披萨时，可以点不同口味的披萨，比如 北京的奶酪 pizza、北京的胡椒 pizza 或者是伦敦的奶酪 pizza、伦敦的胡椒 pizza</p>
+<h4 id="2-UML类图分析"><a href="#2-UML类图分析" class="headerlink" title="2) UML类图分析"></a>2) UML类图分析</h4><img src="设计模式/QQ截图20200116192605.png" style="zoom:80%;" />
+
+<p>说白了就是一个大工厂分解成若干个小工厂，由子类决定要实例化的类</p>
+<h4 id="3-关键代码"><a href="#3-关键代码" class="headerlink" title="3)关键代码"></a>3)关键代码</h4><pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>{
+   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+      String loc = <span class="string">"bj"</span>;
+      <span class="keyword">if</span> (loc.equals(<span class="string">"bj"</span>)) {
+         <span class="comment">//创建北京口味的各种Pizza</span>
+         <span class="keyword">new</span> BJOrderPizza();   <span class="comment">//原本一个大工厂，现在搞出不同的小工厂来了</span>
+      } <span class="keyword">else</span> {
+         <span class="comment">//创建伦敦口味的各种Pizza</span>
+         <span class="keyword">new</span> LDOrderPizza();
+      }
+   }
+}</code></pre>
+<p>BJOrderPizza类（其中的一个小工厂）</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BJOrderPizza</span> <span class="keyword">extends</span> <span class="title">OrderPizza</span> </span>{
+   <span class="meta">@Override</span>
+   <span class="function">Pizza <span class="title">createPizza</span><span class="params">(String orderType)</span> </span>{
+      Pizza pizza = <span class="keyword">null</span>;
+      <span class="keyword">if</span>(orderType.equals(<span class="string">"cheese"</span>)) {
+         pizza = <span class="keyword">new</span> BJCheesePizza();
+      } <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"pepper"</span>)) {
+         pizza = <span class="keyword">new</span> BJPepperPizza();
+      }
+      <span class="keyword">return</span> pizza;
+   }
+}</code></pre>
+<p>LDOrderPizza类（其中的一个小工厂）</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LDOrderPizza</span> <span class="keyword">extends</span> <span class="title">OrderPizza</span> </span>{
+   <span class="meta">@Override</span>
+   <span class="function">Pizza <span class="title">createPizza</span><span class="params">(String orderType)</span> </span>{
+      Pizza pizza = <span class="keyword">null</span>;
+      <span class="keyword">if</span>(orderType.equals(<span class="string">"cheese"</span>)) {
+         pizza = <span class="keyword">new</span> LDCheesePizza();
+      } <span class="keyword">else</span> <span class="keyword">if</span> (orderType.equals(<span class="string">"pepper"</span>)) {
+         pizza = <span class="keyword">new</span> LDPepperPizza();
+      }
+      <span class="keyword">return</span> pizza;
+   }
+}</code></pre>
+<h3 id="4-、工厂方法优缺点"><a href="#4-、工厂方法优缺点" class="headerlink" title="(4)、工厂方法优缺点"></a>(4)、工厂方法优缺点</h3><p><strong>优点：</strong></p>
+<ul>
+<li><p>更符合开-闭原则<br>新增一种产品时，只需要增加相应的具体产品类和相应的工厂子类即可</p>
+<blockquote>
+<p>简单工厂模式需要修改工厂类的判断逻辑</p>
+</blockquote>
+</li>
+<li><p>符合单一职责原则<br>每个具体工厂类只负责创建对应的产品</p>
+<blockquote>
+<p>简单工厂中的工厂类存在复杂的switch逻辑判断</p>
+</blockquote>
+</li>
+<li><p>不使用静态工厂方法，可以形成基于继承的等级结构。</p>
+<blockquote>
+<p>简单工厂模式的工厂类使用静态工厂方法</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>添加新产品时，除了增加新产品类外，还要提供与之对应的具体工厂类，系统类的个数将成对增加，在一定程度上增加了系统的复杂度；同时，有更多的类需要编译和运行，会给系统带来一些额外的开销；</li>
+<li>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</li>
+<li>虽然保证了工厂方法内的对修改关闭，但对于使用工厂方法的类，如果要更换另外一种产品，仍然需要修改实例化的具体工厂类；</li>
+<li>一个具体工厂只能创建一种具体产品</li>
+</ul>
+<p><strong>总结：</strong></p>
+<p>工厂模式可以说是简单工厂模式的进一步抽象和拓展，在保留了简单工厂的封装优点的同时，让扩展变得简单，让继承变得可行，增加了多态性的体现。</p>
+<h3 id="5-、应用场景"><a href="#5-、应用场景" class="headerlink" title="(5)、应用场景"></a>(5)、应用场景</h3><p>在了解了优缺点后，总结了工厂方法模式的应用场景：</p>
+<ul>
+<li>当一个类不知道它所需要的对象的类时<br>在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可；</li>
+<li>当一个类希望通过其子类来指定创建对象时<br>在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏代换原则，在程序运行时，子类对象将覆盖父类对象，从而使得系统更容易扩展。</li>
+<li>将创建对象的任务委托给多个工厂子类中的某一个，客户端在使用时可以无须关心是哪一个工厂子类创建产品子类，需要时再动态指定，可将具体工厂类的类名存储在配置文件或数据库中。</li>
+</ul>
+<h2 id="3、抽象工厂模式"><a href="#3、抽象工厂模式" class="headerlink" title="3、抽象工厂模式"></a>3、抽象工厂模式</h2><h3 id="1-、基本介绍"><a href="#1-、基本介绍" class="headerlink" title="(1)、基本介绍"></a>(1)、基本介绍</h3><ol>
+<li>抽象工厂模式：定义了一个 interface  用于创建相关或有依赖关系的对象簇，而无需指明具体的类</li>
+<li>抽象工厂模式可以将简单工厂模式和工厂方法模式进行整合。</li>
+<li>从设计层面看，抽象工厂模式就是对简单工厂模式的改进(或者称为进一步的抽象)。</li>
+<li>将工厂抽象成 两层，AbsFactory( 抽象工厂) 和  具体实现的工厂子类。程序员可以根据创建对象类型使用对应的工厂子类。这样将单个的简单工厂类变成了工厂簇，更利于代码的维护和扩展。</li>
+</ol>
+<h3 id="2-、抽象工厂模式应用实例"><a href="#2-、抽象工厂模式应用实例" class="headerlink" title="(2)、抽象工厂模式应用实例"></a>(2)、抽象工厂模式应用实例</h3><h4 id="1）UML类图分析"><a href="#1）UML类图分析" class="headerlink" title="1）UML类图分析"></a>1）UML类图分析</h4><img src="设计模式/QQ截图20200116200607.png" style="zoom: 67%;" />
+
+<p> OrderPizza类中聚合AbsFactory接口（或抽象类），就代表聚合进去了BeiJing Orderpizza或London Orderpizza，这里可以进行选择实际子类的工厂究竟是哪一个。</p>
+<h4 id="2）关键代码"><a href="#2）关键代码" class="headerlink" title="2）关键代码"></a>2）关键代码</h4><pre><code class="java"><span class="comment">//一个抽象工厂模式的抽象层(接口)</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AbsFactory</span> </span>{
+   <span class="comment">//让下面的工厂子类来 具体实现</span>
+   <span class="function"><span class="keyword">public</span> Pizza <span class="title">createPizza</span><span class="params">(String orderType)</span></span>;
+}</code></pre>
+<p>BJFactory类实现AbsFactory接口</p>
+<pre><code>//这是工厂子类
+public class BJFactory implements AbsFactory {
+   @Override
+   public Pizza createPizza(String orderType) {
+      System.out.println(&quot;~使用的是抽象工厂模式~&quot;);
+      Pizza pizza = null;
+      if(orderType.equals(&quot;cheese&quot;)) {
+         pizza = new BJCheesePizza();
+      } else if (orderType.equals(&quot;pepper&quot;)){
+         pizza = new BJPepperPizza();
+      }
+      return pizza;
+   }
+}</code></pre><h3 id="3-、抽象工厂优缺点"><a href="#3-、抽象工厂优缺点" class="headerlink" title="(3)、抽象工厂优缺点"></a>(3)、抽象工厂优缺点</h3><p>  <strong>优点：</strong></p>
+<ul>
+<li>降低耦合<br> 抽象工厂模式将具体产品的创建延迟到具体工厂的子类中，这样将对象的创建封装起来，可以减少客户端与具体产品类之间的依赖，从而使系统耦合度低，这样更有利于后期的维护和扩展；</li>
+<li>更符合开-闭原则<br> 新增一种产品类时，只需要增加相应的具体产品类和相应的工厂子类即可</li>
+</ul>
+<blockquote>
+<p>简单工厂模式需要修改工厂类的判断逻辑</p>
+</blockquote>
+<ul>
+<li>符合单一职责原则<br> 每个具体工厂类只负责创建对应的产品</li>
+</ul>
+<blockquote>
+<p>简单工厂中的工厂类存在复杂的switch逻辑判断</p>
+</blockquote>
+<ul>
+<li>不使用静态工厂方法，可以形成基于继承的等级结构。</li>
+</ul>
+<blockquote>
+<p>简单工厂模式的工厂类使用静态工厂方法</p>
+</blockquote>
+<hr>
+<p><strong>缺点：</strong></p>
+<p>抽象工厂模式很难支持新种类产品的变化。<br>这是因为抽象工厂接口中已经确定了可以被创建的产品集合，如果需要添加新产品，此时就必须去修改抽象工厂的接口，这样就涉及到抽象工厂类的以及所有子类的改变，这样也就违背了“开发——封闭”原则。</p>
+<p>如果实现要增加一个新的产品，在接口里面增加一个方法。这种直接修改抽象接口的做法，会导致其所有实现子类都需要进行修改，重写这个未实现的方法，<strong>违反了开闭原则</strong>。当然，如果这种修改是长期稳定的，那么也可以接受。</p>
+<blockquote>
+<p>对于新的产品族符合开-闭原则；对于新的产品种类不符合开-闭原则，这一特性称为开-闭原则的倾斜性。</p>
+<p><strong>在抽象工厂模式中，增加新的产品族很方便，但是增加新的产品等级结构很麻烦</strong>，抽象工厂模式的这种性质称为<strong>“开闭原则”的倾斜性</strong>。</p>
+</blockquote>
+<h3 id="4-、补充"><a href="#4-、补充" class="headerlink" title="(4)、补充"></a>(4)、补充</h3><p> 弹幕大神：</p>
+<ul>
+<li>这里要是换成上衣和裤子区别比较好，上衣工厂和裤子工厂都是抽象衣服工厂子类。</li>
+<li>工厂方法就是父类已经实现了一个整合方法，子类直接继承；抽象工厂就是接口没有实现任何逻辑</li>
+<li>继承是侵入性的 而且java是单继承，抽成接口，那么工厂类可以实现接口，不需要改变继承关系，目的就是拓展某各类功能</li>
+</ul>
+<p>这个披萨的案例其实讲的不是很好，配合网上资料，大概能明白，网上有几篇文章将的不错</p>
+<p><a href="https://blog.csdn.net/u014727260/article/details/82560912" target="_blank" rel="noopener">CSDN：抽象工厂</a></p>
+<p><a href="https://www.jianshu.com/p/7deb64f902db" target="_blank" rel="noopener">简书：抽象工厂模式（Abstract Factory）- 最易懂的设计模式解析</a></p>
+<h2 id="4、工厂模式Java源码分析"><a href="#4、工厂模式Java源码分析" class="headerlink" title="4、工厂模式Java源码分析"></a>4、工厂模式Java源码分析</h2><h3 id="1-、JDK-中的-Calendar-类中，简单工厂模式"><a href="#1-、JDK-中的-Calendar-类中，简单工厂模式" class="headerlink" title="(1)、JDK 中的 Calendar 类中，简单工厂模式"></a>(1)、JDK 中的 Calendar 类中，简单工厂模式</h3><pre><code class="java"><span class="keyword">import</span> java.util.Calendar;
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>{
+   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+      <span class="comment">// getInstance 是 Calendar 静态方法</span>
+      Calendar cal = Calendar.getInstance();
+      <span class="comment">// 注意月份下标从0开始，所以取月份要+1</span>
+      System.out.println(<span class="string">"年:"</span> + cal.get(Calendar.YEAR));
+      System.out.println(<span class="string">"月:"</span> + (cal.get(Calendar.MONTH) + <span class="number">1</span>));
+   }
+}</code></pre>
+<p>注意 Calendar cal = Calendar.getInstance(); 不是new出来的,而是通过getInstance（）一个静态方法得到对象，debug进去</p>
+<pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Calendar <span class="title">getInstance</span><span class="params">()</span></span>
+<span class="function"></span>{
+    <span class="keyword">return</span> createCalendar(TimeZone.getDefault(),Locale.getDefault(Locale.Category.FORMAT));
+}</code></pre>
+<p>如果没有设定时区和位置，这里直接回返回默认的对象，</p>
+<p>继续debug进去</p>
+<pre><code class="java"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Calendar <span class="title">createCalendar</span><span class="params">(TimeZone zone,</span></span>
+<span class="function"><span class="params">                                       Locale aLocale)</span></span>
+<span class="function"></span>{
+    CalendarProvider provider =
+        LocaleProviderAdapter.getAdapter(CalendarProvider<span class="class">.<span class="keyword">class</span>, <span class="title">aLocale</span>)</span>
+<span class="class">                             .<span class="title">getCalendarProvider</span>()</span>;
+    <span class="keyword">if</span> (provider != <span class="keyword">null</span>) {
+        <span class="keyword">try</span> {
+            <span class="keyword">return</span> provider.getInstance(zone, aLocale);
+        } <span class="keyword">catch</span> (IllegalArgumentException iae) {
+            <span class="comment">// fall back to the default instantiation</span>
+        }
+    }
+
+    Calendar cal = <span class="keyword">null</span>;
+
+    <span class="keyword">if</span> (aLocale.hasExtensions()) {
+        String caltype = aLocale.getUnicodeLocaleType(<span class="string">"ca"</span>);
+        <span class="keyword">if</span> (caltype != <span class="keyword">null</span>) {
+            <span class="keyword">switch</span> (caltype) {
+            <span class="keyword">case</span> <span class="string">"buddhist"</span>:
+            cal = <span class="keyword">new</span> BuddhistCalendar(zone, aLocale);
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">"japanese"</span>:
+                cal = <span class="keyword">new</span> JapaneseImperialCalendar(zone, aLocale);
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">"gregory"</span>:
+                cal = <span class="keyword">new</span> GregorianCalendar(zone, aLocale);
+                <span class="keyword">break</span>;
+            }
+        }
+    }
+    <span class="keyword">if</span> (cal == <span class="keyword">null</span>) {
+        <span class="keyword">if</span> (aLocale.getLanguage() == <span class="string">"th"</span> &amp;&amp; aLocale.getCountry() == <span class="string">"TH"</span>) {
+            cal = <span class="keyword">new</span> BuddhistCalendar(zone, aLocale);
+        } <span class="keyword">else</span> <span class="keyword">if</span> (aLocale.getVariant() == <span class="string">"JP"</span> &amp;&amp; aLocale.getLanguage() == <span class="string">"ja"</span>
+                   &amp;&amp; aLocale.getCountry() == <span class="string">"JP"</span>) {
+            cal = <span class="keyword">new</span> JapaneseImperialCalendar(zone, aLocale);
+        } <span class="keyword">else</span> {
+            cal = <span class="keyword">new</span> GregorianCalendar(zone, aLocale);
+        }
+    }
+    <span class="keyword">return</span> cal;
+}</code></pre>
+<p>其中初始化Calendar cal = null;</p>
+<p>然后通过switch使用不同工厂进行创建对象，使用了简单方法工厂模式，</p>
+<p>最后return回去</p>
+<pre><code class="java">Calendar cal = <span class="keyword">null</span>;
+<span class="keyword">if</span> (aLocale.hasExtensions()) {
+    String caltype = aLocale.getUnicodeLocaleType(<span class="string">"ca"</span>);
+    <span class="keyword">if</span> (caltype != <span class="keyword">null</span>) {
+        <span class="keyword">switch</span> (caltype) {
+        <span class="keyword">case</span> <span class="string">"buddhist"</span>:
+        cal = <span class="keyword">new</span> BuddhistCalendar(zone, aLocale);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="string">"japanese"</span>:
+            cal = <span class="keyword">new</span> JapaneseImperialCalendar(zone, aLocale);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="string">"gregory"</span>:
+            cal = <span class="keyword">new</span> GregorianCalendar(zone, aLocale);
+            <span class="keyword">break</span>;
+        }
+    }
+}</code></pre>
+<h3 id="2-、JDK-中的-sql-Connection类中，抽象工厂模式"><a href="#2-、JDK-中的-sql-Connection类中，抽象工厂模式" class="headerlink" title="(2)、JDK 中的 sql.Connection类中，抽象工厂模式"></a>(2)、JDK 中的 sql.Connection类中，抽象工厂模式</h3><pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Connection</span>  <span class="keyword">extends</span> <span class="title">Wrapper</span>, <span class="title">AutoCloseable</span> </span>{
+    <span class="comment">//...        </span>
+        <span class="comment">//返回普通的sql执行器</span>
+        <span class="function">Statement <span class="title">createStatement</span><span class="params">()</span> <span class="keyword">throws</span> SQLException</span>;
+        <span class="comment">//返回具有参数化预编译功能的sql执行器</span>
+        <span class="function">PreparedStatement <span class="title">prepareStatement</span><span class="params">(String sql)</span> <span class="keyword">throws</span> SQLException</span>;
+        <span class="comment">//返回可以执行存储过程的sql执行器</span>
+        <span class="function">CallableStatement <span class="title">prepareCall</span><span class="params">(String sql)</span> <span class="keyword">throws</span> SQLException</span>;   
+    <span class="comment">//...         </span>
+}</code></pre>
+<p>从上面的注释就可以看出，这就是典型的抽象工厂接口，描述了不同的产品等级Statement、PreparedStatement、CallableStatement，它们都位于抽象接口Statement产品等级结构中。我们可以继续寻找该抽象工厂接口的实现类</p>
+<p>这里就以Mysql为例，可以找到Mysql对这个工厂接口的实现类ConnectionImpl，ConnectionImpl并不是直接实现了java.sql.Connection,而是通过实现自己扩展的MySQLConnection接口，该接口也是间接继承了java.sql.Connection</p>
+<img src="设计模式/20180909172407.png" style="zoom:80%;" />
+
+
+
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionImpl</span> <span class="keyword">extends</span> <span class="title">ConnectionPropertiesImpl</span> <span class="keyword">implements</span> <span class="title">MySQLConnection</span> </span>{
+    <span class="comment">//...</span>
+ <span class="keyword">public</span> java.sql.<span class="function">Statement <span class="title">createStatement</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>{
+        <span class="keyword">return</span> createStatement(DEFAULT_RESULT_SET_TYPE, DEFAULT_RESULT_SET_CONCURRENCY);
+    }
+
+ <span class="keyword">public</span> java.sql.<span class="function">PreparedStatement <span class="title">prepareStatement</span><span class="params">(String sql)</span> <span class="keyword">throws</span> SQLException </span>{
+        <span class="keyword">return</span> prepareStatement(sql, DEFAULT_RESULT_SET_TYPE, DEFAULT_RESULT_SET_CONCURRENCY);
+    }
+
+ <span class="keyword">public</span> java.sql.<span class="function">CallableStatement <span class="title">prepareCall</span><span class="params">(String sql)</span> <span class="keyword">throws</span> SQLException </span>{
+
+        <span class="keyword">return</span> prepareCall(sql, DEFAULT_RESULT_SET_TYPE, DEFAULT_RESULT_SET_CONCURRENCY);
+    }
+    <span class="comment">//...</span>
+}</code></pre>
+<p>以<code>createStatement</code>为例，跟踪其调用代码可以看到<strong>StatementImpl</strong>这个类就是实现了java.sql.Statement的具体产品类</p>
+<pre><code class="java"><span class="keyword">public</span> java.sql.<span class="function">Statement <span class="title">createStatement</span><span class="params">(<span class="keyword">int</span> resultSetType, <span class="keyword">int</span> resultSetConcurrency)</span> <span class="keyword">throws</span> SQLException </span>{
+    checkClosed();
+
+    StatementImpl stmt = <span class="keyword">new</span> StatementImpl(getMultiHostSafeProxy(), <span class="keyword">this</span>.database);
+    stmt.setResultSetType(resultSetType);
+    stmt.setResultSetConcurrency(resultSetConcurrency);
+
+    <span class="keyword">return</span> stmt;
+}</code></pre>
+<h3 id="3-、Mybatis中的SqlSessionFactory类，抽象工厂模式"><a href="#3-、Mybatis中的SqlSessionFactory类，抽象工厂模式" class="headerlink" title="(3) 、Mybatis中的SqlSessionFactory类，抽象工厂模式"></a>(3) 、Mybatis中的SqlSessionFactory类，抽象工厂模式</h3><ul>
+<li>mybatis中的SqlSessionFactory</li>
+</ul>
+<pre><code class="java"><span class="comment">/**</span>
+<span class="comment"> * Creates an {<span class="doctag">@link</span> SqlSession} out of a connection or a DataSource</span>
+<span class="comment"> * </span>
+<span class="comment"> * <span class="doctag">@author</span> Clinton Begin</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SqlSessionFactory</span> </span>{
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">()</span></span>;
+
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(<span class="keyword">boolean</span> autoCommit)</span></span>;
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(Connection connection)</span></span>;
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(TransactionIsolationLevel level)</span></span>;
+
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType)</span></span>;
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, <span class="keyword">boolean</span> autoCommit)</span></span>;
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, TransactionIsolationLevel level)</span></span>;
+  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, Connection connection)</span></span>;
+
+  <span class="function">Configuration <span class="title">getConfiguration</span><span class="params">()</span></span>;
+}</code></pre>
+<p>SqlSessionFactory也是抽象工厂接口，Configuration和SqlSession都是在不同的产品等级上。通过IDEA工具可以通过UML图清晰得看到SqlSessionFactory的工厂实现类</p>
+<img src="设计模式/20180909180700.png" style="zoom: 67%;" />
+
+
+
+<h2 id="5、工厂模式小结"><a href="#5、工厂模式小结" class="headerlink" title="5、工厂模式小结"></a>5、工厂模式小结</h2><ol>
+<li><p>工厂模式的意义：<br>将实例化对象的代码提取出来，放到一个类中统一管理和维护，达到和主项目的依赖关系的解耦。从而提高项<br>目的扩展和维护性。</p>
+</li>
+<li><p>三种工厂模式 ：</p>
+<p>(简单工厂模式、工厂方法模式、抽象工厂模式)</p>
+</li>
+<li><p>设计模式的依赖抽象原则 ：</p>
+</li>
+</ol>
+<ul>
+<li>创建对象实例时，不要直接 new 类, 而是把这个 new 类的动作放在一个工厂的方法中，并返回。有的书上说，变量不要直接持有具体类的引用。</li>
+<li>不要让类继承具体类，而是继承抽象类或者是实现 interface(接口)</li>
+<li>不要覆盖基类中已经实现的方法。</li>
+</ul>
